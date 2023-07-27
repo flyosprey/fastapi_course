@@ -1,6 +1,7 @@
 from typing import Optional
 
 from fastapi import FastAPI, Path, Query, HTTPException
+# from pydantic import BaseModel, Field
 from pydantic import BaseModel, Field
 from starlette import status
 
@@ -25,11 +26,11 @@ class Book:
 
 
 class BookRequest(BaseModel):
-    id: Optional[int] = Field(title='id is not needed')
-    title: str = Field(min_length=3)
-    author: str = Field(min_length=1)
+    id: Optional[int] = Field(title="It is not necessary")
+    title: str = Field(min_length=3, max_length=50)
+    author: str = Field(min_length=3, max_length=50)
     description: str = Field(min_length=1, max_length=100)
-    rating: int = Field(gt=0, lt=6)
+    rating: int = Field(gt=0, lt=10)
     published_date: int = Field(gt=1999, lt=2031)
 
     class Config:
